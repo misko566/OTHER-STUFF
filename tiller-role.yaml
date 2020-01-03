@@ -1,0 +1,11 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  #namespace: all
+  name: tiller-role
+rules:
+- apiGroups: ["", "extensions", "apps" , "*"]
+  resources: ["deployments", "replicasets", "pods" , "secrets" , "*" , "configmaps" , "endpoints"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete" , "*"] # You can also use ["*"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
